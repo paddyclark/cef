@@ -1,12 +1,24 @@
+# Resharper files
+_ReSharper.*
+*.resharper
+
+# NCrunch
+*.ncrunchproject
+*.ncrunchsolution
+
 # Compiled Object files
-*.slo
-*.lo
-*.o
+obj/
+Obj/
 
-# Compiled Dynamic libraries
-*.so
+# Solution files
+*.user
+*.opensdf
+*.sdf
+*.suo
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# CEFClient pdb's
+/*/cefclient.ilk
+/*/cefclient.pdb
+
+# Cef logging
+/*/debug.log
