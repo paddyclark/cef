@@ -1,4 +1,4 @@
-# Copyright (c) 2012 The Chromium Embedded Framework Authors. All rights
+# Copyright (c) 2013 The Chromium Embedded Framework Authors. All rights
 # reserved. Use of this source code is governed by a BSD-style license that
 # can be found in the LICENSE file.
 #
@@ -26,6 +26,7 @@
       'include/cef_find_handler.h',
       'include/cef_focus_handler.h',
       'include/cef_frame.h',
+      'include/cef_geolocation.h',
       'include/cef_geolocation_handler.h',
       'include/cef_jsdialog_handler.h',
       'include/cef_keyboard_handler.h',
@@ -68,6 +69,7 @@
       'include/capi/cef_find_handler_capi.h',
       'include/capi/cef_focus_handler_capi.h',
       'include/capi/cef_frame_capi.h',
+      'include/capi/cef_geolocation_capi.h',
       'include/capi/cef_geolocation_handler_capi.h',
       'include/capi/cef_jsdialog_handler_capi.h',
       'include/capi/cef_keyboard_handler_capi.h',
@@ -138,6 +140,8 @@
       'libcef_dll/cpptoc/geolocation_callback_cpptoc.h',
       'libcef_dll/ctocpp/geolocation_handler_ctocpp.cc',
       'libcef_dll/ctocpp/geolocation_handler_ctocpp.h',
+      'libcef_dll/ctocpp/get_geolocation_callback_ctocpp.cc',
+      'libcef_dll/ctocpp/get_geolocation_callback_ctocpp.h',
       'libcef_dll/ctocpp/jsdialog_handler_ctocpp.cc',
       'libcef_dll/ctocpp/jsdialog_handler_ctocpp.h',
       'libcef_dll/ctocpp/keyboard_handler_ctocpp.cc',
@@ -176,6 +180,8 @@
       'libcef_dll/cpptoc/scheme_handler_callback_cpptoc.h',
       'libcef_dll/ctocpp/scheme_handler_factory_ctocpp.cc',
       'libcef_dll/ctocpp/scheme_handler_factory_ctocpp.h',
+      'libcef_dll/cpptoc/scheme_registrar_cpptoc.cc',
+      'libcef_dll/cpptoc/scheme_registrar_cpptoc.h',
       'libcef_dll/cpptoc/stream_reader_cpptoc.cc',
       'libcef_dll/cpptoc/stream_reader_cpptoc.h',
       'libcef_dll/cpptoc/stream_writer_cpptoc.cc',
@@ -256,6 +262,8 @@
       'libcef_dll/ctocpp/geolocation_callback_ctocpp.h',
       'libcef_dll/cpptoc/geolocation_handler_cpptoc.cc',
       'libcef_dll/cpptoc/geolocation_handler_cpptoc.h',
+      'libcef_dll/cpptoc/get_geolocation_callback_cpptoc.cc',
+      'libcef_dll/cpptoc/get_geolocation_callback_cpptoc.h',
       'libcef_dll/cpptoc/jsdialog_handler_cpptoc.cc',
       'libcef_dll/cpptoc/jsdialog_handler_cpptoc.h',
       'libcef_dll/cpptoc/keyboard_handler_cpptoc.cc',
@@ -294,6 +302,8 @@
       'libcef_dll/ctocpp/scheme_handler_callback_ctocpp.h',
       'libcef_dll/cpptoc/scheme_handler_factory_cpptoc.cc',
       'libcef_dll/cpptoc/scheme_handler_factory_cpptoc.h',
+      'libcef_dll/ctocpp/scheme_registrar_ctocpp.cc',
+      'libcef_dll/ctocpp/scheme_registrar_ctocpp.h',
       'libcef_dll/ctocpp/stream_reader_ctocpp.cc',
       'libcef_dll/ctocpp/stream_reader_ctocpp.h',
       'libcef_dll/ctocpp/stream_writer_ctocpp.cc',

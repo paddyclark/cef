@@ -165,6 +165,11 @@ cef_types.h
   cef_log_severity_t log_severity;
 
   <font color="green">///</font>
+  <font color="green">// Enable DCHECK in release mode to ease debugging.</font>
+  <font color="green">///</font>
+  <font color="blue">bool</font> release_dcheck_enabled;
+
+  <font color="green">///</font>
   <font color="green">// The graphics implementation that CEF will use for rendering GPU accelerated</font>
   <font color="green">// content like WebGL, accelerated layers and 3D CSS.</font>
   <font color="green">///</font>
@@ -218,6 +223,33 @@ cef_types.h
   <font color="green">// is disabled.</font>
   <font color="green">///</font>
   <font color="blue">bool</font> pack_loading_disabled;
+
+  <font color="green">///</font>
+  <font color="green">// The number of stack trace frames to capture for uncaught exceptions.</font>
+  <font color="green">// Specify a positive value to enable the CefV8ContextHandler::</font>
+  <font color="green">// OnUncaughtException() callback. Specify 0 (default value) and</font>
+  <font color="green">// OnUncaughtException() will not be called.</font>
+  <font color="green">///</font>
+  <font color="blue">int</font> uncaught_exception_stack_size;
+
+  <font color="green">///</font>
+  <font color="green">// By default CEF V8 references will be invalidated (the IsValid() method will</font>
+  <font color="green">// return false) after the owning context has been released. This reduces the</font>
+  <font color="green">// need for external record keeping and avoids crashes due to the use of V8</font>
+  <font color="green">// references after the associated context has been released.</font>
+  <font color="green">//</font>
+  <font color="green">// CEF currently offers two context safety implementations with different</font>
+  <font color="green">// performance characteristics. The default implementation (value of 0) uses a</font>
+  <font color="green">// map of hash values and should provide better performance in situations with</font>
+  <font color="green">// a small number contexts. The alternate implementation (value of 1) uses a</font>
+  <font color="green">// hidden value attached to each context and should provide better performance</font>
+  <font color="green">// in situations with a large number of contexts.</font>
+  <font color="green">//</font>
+  <font color="green">// If you need better performance in the creation of V8 references and you</font>
+  <font color="green">// plan to manually track context lifespan you can disable context safety by</font>
+  <font color="green">// specifying a value of -1.</font>
+  <font color="green">///</font>
+  <font color="blue">int</font> context_safety_implementation;
 <font color="black">}</font> cef_settings_t;
 
 <font color="green">///</font>
@@ -1117,6 +1149,74 @@ cef_types.h
   <font color="blue">enum</font> cef_proxy_type_t proxyType;
   cef_string_t proxyList;
 <font color="black">}</font> cef_proxy_info_t;
+
+<font color="green">///</font>
+<font color="green">// Geoposition error codes.</font>
+<font color="green">///</font>
+<font color="blue">enum</font> cef_geoposition_error_code_t <font color="black">{</font>
+  GEOPOSITON_ERROR_NONE <font color="black">=</font> <font color="maroon">0</font>,
+  GEOPOSITON_ERROR_PERMISSION_DENIED,
+  GEOPOSITON_ERROR_POSITION_UNAVAILABLE,
+  GEOPOSITON_ERROR_TIMEOUT,
+<font color="black">}</font>;
+
+<font color="green">///</font>
+<font color="green">// Structure representing geoposition information. The properties of this</font>
+<font color="green">// structure correspond to those of the JavaScript Position object although</font>
+<font color="green">// their types may differ.</font>
+<font color="green">///</font>
+<font color="blue">typedef</font> <font color="blue">struct</font> _cef_geoposition_t <font color="black">{</font>
+  <font color="green">///</font>
+  <font color="green">// Latitude in decimal degrees north (WGS84 coordinate frame).</font>
+  <font color="green">///</font>
+  <font color="blue">double</font> latitude;
+
+  <font color="green">///</font>
+  <font color="green">// Longitude in decimal degrees west (WGS84 coordinate frame).</font>
+  <font color="green">///</font>
+  <font color="blue">double</font> longitude;
+
+  <font color="green">///</font>
+  <font color="green">// Altitude in meters (above WGS84 datum).</font>
+  <font color="green">///</font>
+  <font color="blue">double</font> altitude;
+
+  <font color="green">///</font>
+  <font color="green">// Accuracy of horizontal position in meters.</font>
+  <font color="green">///</font>
+  <font color="blue">double</font> accuracy;
+
+  <font color="green">///</font>
+  <font color="green">// Accuracy of altitude in meters.</font>
+  <font color="green">///</font>
+  <font color="blue">double</font> altitude_accuracy;
+
+  <font color="green">///</font>
+  <font color="green">// Heading in decimal degrees clockwise from true north.</font>
+  <font color="green">///</font>
+  <font color="blue">double</font> heading;
+
+  <font color="green">///</font>
+  <font color="green">// Horizontal component of device velocity in meters per second.</font>
+  <font color="green">///</font>
+  <font color="blue">double</font> speed;
+
+  <font color="green">///</font>
+  <font color="green">// Time of position measurement in miliseconds since Epoch in UTC time. This</font>
+  <font color="green">// is taken from the host computer's system clock.</font>
+  <font color="green">///</font>
+  cef_time_t timestamp;
+
+  <font color="green">///</font>
+  <font color="green">// Error code, see enum above.</font>
+  <font color="green">///</font>
+  cef_geoposition_error_code_t error_code;
+
+  <font color="green">///</font>
+  <font color="green">// Human-readable error message.</font>
+  <font color="green">///</font>
+  cef_string_t error_message;
+<font color="black">}</font> cef_geoposition_t;
 
 <font color="blue">#ifdef</font> __cplusplus
 <font color="black">}</font>

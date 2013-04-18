@@ -24,6 +24,7 @@ const char kLogSeverity_Warning[] = "warning";
 const char kLogSeverity_Error[] = "error";
 const char kLogSeverity_ErrorReport[] = "error-report";
 const char kLogSeverity_Disable[] = "disable";
+const char kReleaseDcheckEnabled[] = "release-dcheck-enabled";
 const char kGraphicsImpl[] = "graphics-implementation";
 const char kGraphicsImpl_Angle[] = "angle";
 const char kGraphicsImpl_AngleCmdBuffer[] = "angle-command-buffer";
@@ -35,6 +36,8 @@ const char kJavascriptFlags[] = "javascript-flags";
 const char kResourcesDirPath[] = "resources-dir-path";
 const char kLocalesDirPath[] = "locales-dir-path";
 const char kPackLoadingDisabled[] = "pack-loading-disabled";
+const char kUncaughtExceptionStackSize[] = "uncaught-exception-stack-size";
+const char kContextSafetyImplementation[] = "context-safety-implementation";
 
 // CefBrowserSettings attributes.
 const char kDragDropDisabled[] = "drag-drop-disabled";

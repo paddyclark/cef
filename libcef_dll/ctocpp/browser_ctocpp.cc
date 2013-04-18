@@ -1,4 +1,4 @@
-// Copyright (c) 2012 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2013 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -193,6 +193,19 @@ CefWindowHandle CefBrowserCToCpp::GetOpenerWindowHandle() {
 
   // Execute
   cef_window_handle_t _retval = struct_->get_opener_window_handle(struct_);
+
+  // Return type: simple
+  return _retval;
+}
+
+int CefBrowserCToCpp::GetIdentifier() {
+  if (CEF_MEMBER_MISSING(struct_, get_identifier))
+    return 0;
+
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Execute
+  int _retval = struct_->get_identifier(struct_);
 
   // Return type: simple
   return _retval;

@@ -92,6 +92,13 @@ cef_display_handler.h
                              <font color="blue">const</font> CefString<font color="black">&</font> title<font color="black">)</font> <font color="black">{</font><font color="black">}</font>
 
   <font color="green">///</font>
+  <font color="green">// Called when the Favicon URL for a page changes.</font>
+  <font color="green">///</font>
+  <font color="green">/*--cef()--*/</font>
+  virtual <font color="blue">void</font> OnFaviconURLChange<font color="black">(</font>CefRefPtr<font color="black">&#60;</font>CefBrowser<font color="black">&#62;</font> browser,
+                                  <font color="blue">const</font> std<font color="black">:</font><font color="black">:</font>vector<font color="black">&#60;</font>CefString<font color="black">&#62;</font><font color="black">&</font> icon_urls<font color="black">)</font> <font color="black">{</font><font color="black">}</font>
+
+  <font color="green">///</font>
   <font color="green">// Called when the browser is about to display a tooltip. |text| contains the</font>
   <font color="green">// text that will be displayed in the tooltip. To handle the display of the</font>
   <font color="green">// tooltip yourself return true. Otherwise, you can optionally modify |text|</font>

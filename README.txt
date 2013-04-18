@@ -1,13 +1,13 @@
 Chromium Embedded Framework (CEF) Binary Distribution
 -------------------------------------------------------------------------------
 
-Date:             October 02, 2012
+Date:             March 04, 2013
 
-CEF Version:      1.1180.832
-CEF URL:          https://chromiumembedded.googlecode.com/svn/branches/1180/cef1@832
+CEF Version:      1.1364.1123
+CEF URL:          https://chromiumembedded.googlecode.com/svn/branches/1364/cef1@1123
 
-Chromium Verison: 21.0.1180.91
-Chromium URL:     http://src.chromium.org/svn/branches/1180/src@157234
+Chromium Verison: 25.0.1364.152
+Chromium URL:     http://src.chromium.org/svn/branches/1364/src@185281
 
 
 This distribution contains all components necessary to build and distribute an
@@ -45,11 +45,18 @@ Release     Contains libcef.dll and other components required to run the release
 USAGE
 -----
 
-Visual Studio 2010: Open the cefclient2010.sln solution and build.
-Visual Studio 2008: Open the cefclient2008.sln solution and build.
-  * If using VS2008 Express Edition add atlthunk.lib to the cefclient
-    Configuration Properties > Linker > Input > Additional Dependencies
-Visual Studio 2005: Open the cefclient2005.sln solution and build.
+Visual Studio 2012 and Visual Studio 2010:
+  Open the cefclient2010.sln solution in Visual Studio and build.
+
+Visual Studio 2008:
+  Open the cefclient2008.sln solution in Visual Studio and build.
+
+Visual Studio 2005:
+  1. Open the cefclient.vcproj and libcef_dll_wrapper.vcproj files in a text
+     editor. Change Version="9.00" to Version="8.00".
+  2. Open the cefclient2005.sln file in a text editor. Change "Version 9.00" to
+     "Version 8.00".
+  3. Open the cefclient2005.sln solution in Visual Studio and build.
 
 Please visit the CEF Website for additional usage information.
 
