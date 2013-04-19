@@ -140,7 +140,7 @@ cef_request_handler.h
   <font color="green">// CefDownloadHandler instance that will recieve the file contents. Return</font>
   <font color="green">// true to download the file or false to cancel the file download.</font>
   <font color="green">///</font>
-  <font color="green">/*--cef()--*/</font>
+  <font color="green">/*--cef(optional_param=mimeType)--*/</font>
   virtual <font color="blue">bool</font> GetDownloadHandler<font color="black">(</font>CefRefPtr<font color="black">&#60;</font>CefBrowser<font color="black">&#62;</font> browser,
                                   <font color="blue">const</font> CefString<font color="black">&</font> mimeType,
                                   <font color="blue">const</font> CefString<font color="black">&</font> fileName,

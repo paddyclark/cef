@@ -17,6 +17,7 @@
 #include "cefclient/cefclient_switches.h"
 #include "cefclient/client_handler.h"
 #include "cefclient/binding_test.h"
+#include "cefclient/scheme_test.h"
 #include "cefclient/string_util.h"
 #include "cefclient/util.h"
 
@@ -125,6 +126,11 @@ class ClientApp : public CefApp,
       proxy_config_(proxy_config) {
   }
 
+  virtual void OnRegisterCustomSchemes(
+      CefRefPtr<CefSchemeRegistrar> registrar) OVERRIDE {
+    AddSchemeTestSchemes(registrar);
+  }
+
   // CefApp methods
   virtual CefRefPtr<CefProxyHandler> GetProxyHandler() OVERRIDE { return this; }
 
@@ -225,6 +231,9 @@ void AppGetSettings(CefSettings& settings, CefRefPtr<CefApp>& app) {
     }
   }
 
+  settings.release_dcheck_enabled =
+      g_command_line->HasSwitch(cefclient::kReleaseDcheckEnabled);
+
   {
     std::string str = g_command_line->GetSwitchValue(cefclient::kGraphicsImpl);
     if (!str.empty()) {
@@ -257,6 +266,10 @@ void AppGetSettings(CefSettings& settings, CefRefPtr<CefApp>& app) {
 
   settings.pack_loading_disabled =
       g_command_line->HasSwitch(cefclient::kPackLoadingDisabled);
+  settings.uncaught_exception_stack_size = GetIntValue(
+      g_command_line->GetSwitchValue(cefclient::kUncaughtExceptionStackSize));
+  settings.context_safety_implementation = GetIntValue(
+      g_command_line->GetSwitchValue(cefclient::kContextSafetyImplementation));
 
   // Retrieve command-line proxy configuration, if any.
   bool has_proxy = false;
@@ -652,4 +665,8 @@ void RunPluginInfoTest(CefRefPtr<CefBrowser> browser) {
 
 void RunGeolocationTest(CefRefPtr<CefBrowser> browser) {
   browser->GetMainFrame()->LoadURL("http://html5demos.com/geo");
+}
+
+void RunDialogsTest(CefRefPtr<CefBrowser> browser) {
+  browser->GetMainFrame()->LoadURL("http://tests/dialogs");
 }

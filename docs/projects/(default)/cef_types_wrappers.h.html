@@ -291,6 +291,7 @@ cef_types_wrappers.h
     cef_string_set<font color="black">(</font>src<font color="black">-</font><font color="black">&#62;</font>log_file.str, src<font color="black">-</font><font color="black">&#62;</font>log_file.length, <font color="black">&</font>target<font color="black">-</font><font color="black">&#62;</font>log_file,
         copy<font color="black">)</font>;
     target<font color="black">-</font><font color="black">&#62;</font>log_severity <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>log_severity;
+    target<font color="black">-</font><font color="black">&#62;</font>release_dcheck_enabled <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>release_dcheck_enabled;
     target<font color="black">-</font><font color="black">&#62;</font>graphics_implementation <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>graphics_implementation;
     target<font color="black">-</font><font color="black">&#62;</font>local_storage_quota <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>local_storage_quota;
     target<font color="black">-</font><font color="black">&#62;</font>session_storage_quota <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>session_storage_quota;
@@ -307,6 +308,8 @@ cef_types_wrappers.h
     cef_string_set<font color="black">(</font>src<font color="black">-</font><font color="black">&#62;</font>locales_dir_path.str, src<font color="black">-</font><font color="black">&#62;</font>locales_dir_path.length,
         <font color="black">&</font>target<font color="black">-</font><font color="black">&#62;</font>locales_dir_path, copy<font color="black">)</font>;
     target<font color="black">-</font><font color="black">&#62;</font>pack_loading_disabled <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>pack_loading_disabled;
+    target<font color="black">-</font><font color="black">&#62;</font>uncaught_exception_stack_size <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>uncaught_exception_stack_size;
+    target<font color="black">-</font><font color="black">&#62;</font>context_safety_implementation <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>context_safety_implementation;
   <font color="black">}</font>
 <font color="black">}</font>;
 
@@ -506,6 +509,18 @@ cef_types_wrappers.h
     cef_time_to_doublet<font color="black">(</font><font color="blue">this</font>, <font color="black">&</font>time<font color="black">)</font>;
     <font color="blue">return</font> time;
   <font color="black">}</font>
+
+  <font color="green">// Set this object to now.</font>
+  <font color="blue">void</font> Now<font color="black">(</font><font color="black">)</font> <font color="black">{</font>
+    cef_time_now<font color="black">(</font><font color="blue">this</font><font color="black">)</font>;
+  <font color="black">}</font>
+
+  <font color="green">// Return the delta between this object and |other| in milliseconds.</font>
+  <font color="blue">long</font> <font color="blue">long</font> Delta<font color="black">(</font><font color="blue">const</font> CefTime<font color="black">&</font> other<font color="black">)</font> <font color="black">{</font>
+    <font color="blue">long</font> <font color="blue">long</font> delta <font color="black">=</font> <font color="maroon">0</font>;
+    cef_time_delta<font color="black">(</font><font color="blue">this</font>, <font color="black">&</font>other, <font color="black">&</font>delta<font color="black">)</font>;
+    <font color="blue">return</font> delta;
+  <font color="black">}</font>
 <font color="black">}</font>;
 
 
@@ -646,6 +661,37 @@ cef_types_wrappers.h
 
   CefString ProxyList<font color="black">(</font><font color="black">)</font> <font color="blue">const</font> <font color="black">{</font> <font color="blue">return</font> CefString<font color="black">(</font><font color="black">&</font>proxyList<font color="black">)</font>; <font color="black">}</font>
 <font color="black">}</font>;
+
+
+<font color="blue">struct</font> CefGeopositionTraits <font color="black">{</font>
+  <font color="blue">typedef</font> cef_geoposition_t struct_type;
+
+  <font color="blue">static</font> <font color="blue">inline</font> <font color="blue">void</font> init<font color="black">(</font>struct_type<font color="black">*</font> s<font color="black">)</font> <font color="black">{</font><font color="black">}</font>
+
+  <font color="blue">static</font> <font color="blue">inline</font> <font color="blue">void</font> clear<font color="black">(</font>struct_type<font color="black">*</font> s<font color="black">)</font> <font color="black">{</font>
+    cef_string_clear<font color="black">(</font><font color="black">&</font>s<font color="black">-</font><font color="black">&#62;</font>error_message<font color="black">)</font>;
+  <font color="black">}</font>
+
+  <font color="blue">static</font> <font color="blue">inline</font> <font color="blue">void</font> set<font color="black">(</font><font color="blue">const</font> struct_type<font color="black">*</font> src, struct_type<font color="black">*</font> target,
+      <font color="blue">bool</font> copy<font color="black">)</font> <font color="black">{</font>
+    target<font color="black">-</font><font color="black">&#62;</font>latitude <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>latitude;
+    target<font color="black">-</font><font color="black">&#62;</font>longitude <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>longitude;
+    target<font color="black">-</font><font color="black">&#62;</font>altitude <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>altitude;
+    target<font color="black">-</font><font color="black">&#62;</font>accuracy <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>accuracy;
+    target<font color="black">-</font><font color="black">&#62;</font>altitude_accuracy <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>altitude_accuracy;
+    target<font color="black">-</font><font color="black">&#62;</font>heading <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>heading;
+    target<font color="black">-</font><font color="black">&#62;</font>speed <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>speed;
+    target<font color="black">-</font><font color="black">&#62;</font>timestamp <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>timestamp;
+    target<font color="black">-</font><font color="black">&#62;</font>error_code <font color="black">=</font> src<font color="black">-</font><font color="black">&#62;</font>error_code;
+    cef_string_set<font color="black">(</font>src<font color="black">-</font><font color="black">&#62;</font>error_message.str, src<font color="black">-</font><font color="black">&#62;</font>error_message.length,
+        <font color="black">&</font>target<font color="black">-</font><font color="black">&#62;</font>error_message, copy<font color="black">)</font>;
+  <font color="black">}</font>
+<font color="black">}</font>;
+
+<font color="green">///</font>
+<font color="green">// Class representing a geoposition.</font>
+<font color="green">///</font>
+<font color="blue">typedef</font> CefStructBase<font color="black">&#60;</font>CefGeopositionTraits<font color="black">&#62;</font> CefGeoposition;
 
 <font color="blue">#endif</font>  <font color="green">// CEF_INCLUDE_INTERNAL_CEF_TYPES_WRAPPERS_H_</font>
 

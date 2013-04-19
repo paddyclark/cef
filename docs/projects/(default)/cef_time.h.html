@@ -77,6 +77,18 @@ CEF_EXPORT <font color="blue">int</font> cef_time_from_timet<font color="black">
 CEF_EXPORT <font color="blue">int</font> cef_time_to_doublet<font color="black">(</font><font color="blue">const</font> cef_time_t<font color="black">*</font> cef_time, <font color="blue">double</font><font color="black">*</font> time<font color="black">)</font>;
 CEF_EXPORT <font color="blue">int</font> cef_time_from_doublet<font color="black">(</font><font color="blue">double</font> time, cef_time_t<font color="black">*</font> cef_time<font color="black">)</font>;
 
+<font color="green">///</font>
+<font color="green">// Retrieve the current system time.</font>
+<font color="green">//</font>
+CEF_EXPORT <font color="blue">int</font> cef_time_now<font color="black">(</font>cef_time_t<font color="black">*</font> cef_time<font color="black">)</font>;
+
+<font color="green">///</font>
+<font color="green">// Retrieve the delta in milliseconds between two time values.</font>
+<font color="green">//</font>
+CEF_EXPORT <font color="blue">int</font> cef_time_delta<font color="black">(</font><font color="blue">const</font> cef_time_t<font color="black">*</font> cef_time1,
+                              <font color="blue">const</font> cef_time_t<font color="black">*</font> cef_time2,
+                              <font color="blue">long</font> <font color="blue">long</font><font color="black">*</font> delta<font color="black">)</font>;
+
 <font color="blue">#ifdef</font> __cplusplus
 <font color="black">}</font>
 <font color="blue">#endif</font>

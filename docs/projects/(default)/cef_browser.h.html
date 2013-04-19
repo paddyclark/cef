@@ -156,6 +156,12 @@ cef_browser.h
   virtual CefWindowHandle GetOpenerWindowHandle<font color="black">(</font><font color="black">)</font> <font color="black">=</font><font color="maroon">0</font>;
 
   <font color="green">///</font>
+  <font color="green">// Returns the globally unique identifier for this browser.</font>
+  <font color="green">///</font>
+  <font color="green">/*--cef()--*/</font>
+  virtual <font color="blue">int</font> GetIdentifier<font color="black">(</font><font color="black">)</font> <font color="black">=</font><font color="maroon">0</font>;
+
+  <font color="green">///</font>
   <font color="green">// Returns true if the window is a popup window.</font>
   <font color="green">///</font>
   <font color="green">/*--cef()--*/</font>

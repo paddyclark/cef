@@ -6,6 +6,7 @@
 #include <string>
 #include "include/cef_browser.h"
 #include "include/cef_frame.h"
+#include "cefclient/performance_test.h"
 #include "cefclient/resource.h"
 #include "cefclient/resource_util.h"
 #include "cefclient/string_util.h"
@@ -113,6 +114,15 @@ bool ClientHandler::OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser,
     resourceStream = CefStreamReader::CreateForData(
         static_cast<void*>(const_cast<char*>(html.c_str())),
         html.size());
+    response->SetMimeType("text/html");
+    response->SetStatus(200);
+  } else if (url == performance_test::kTestUrl) {
+    resourceStream = GetBinaryResourceReader(IDS_PERFORMANCE);
+    response->SetMimeType("text/html");
+    response->SetStatus(200);
+  } else if (url == "http://tests/dialogs") {
+    // Show the dialogs HTML contents
+    resourceStream = GetBinaryResourceReader(IDS_DIALOGS);
     response->SetMimeType("text/html");
     response->SetStatus(200);
   }

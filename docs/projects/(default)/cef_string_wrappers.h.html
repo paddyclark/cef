@@ -322,7 +322,8 @@ cef_string_wrappers.h
   <font color="black">}</font>
   CefStringBase<font color="black">(</font><font color="blue">const</font> <font color="blue">char</font><font color="black">*</font> src<font color="black">)</font>  <font color="green">// NOLINT(runtime/explicit)</font>
     <font color="black">:</font> string_<font color="black">(</font>NULL<font color="black">)</font>, owner_<font color="black">(</font><font color="blue">false</font><font color="black">)</font> <font color="black">{</font>
-    FromString<font color="black">(</font>std<font color="black">:</font><font color="black">:</font>string<font color="black">(</font>src<font color="black">)</font><font color="black">)</font>;
+    <font color="blue">if</font> <font color="black">(</font>src<font color="black">)</font>
+      FromString<font color="black">(</font>std<font color="black">:</font><font color="black">:</font>string<font color="black">(</font>src<font color="black">)</font><font color="black">)</font>;
   <font color="black">}</font>
 
   <font color="green">///</font>
@@ -336,7 +337,8 @@ cef_string_wrappers.h
   <font color="black">}</font>
   CefStringBase<font color="black">(</font><font color="blue">const</font> wchar_t<font color="black">*</font> src<font color="black">)</font>  <font color="green">// NOLINT(runtime/explicit)</font>
     <font color="black">:</font> string_<font color="black">(</font>NULL<font color="black">)</font>, owner_<font color="black">(</font><font color="blue">false</font><font color="black">)</font> <font color="black">{</font>
-    FromWString<font color="black">(</font>std<font color="black">:</font><font color="black">:</font>wstring<font color="black">(</font>src<font color="black">)</font><font color="black">)</font>;
+    <font color="blue">if</font> <font color="black">(</font>src<font color="black">)</font>
+      FromWString<font color="black">(</font>std<font color="black">:</font><font color="black">:</font>wstring<font color="black">(</font>src<font color="black">)</font><font color="black">)</font>;
   <font color="black">}</font>
 
 <font color="blue">#if</font> <font color="black">(</font>defined<font color="black">(</font>BUILDING_CEF_SHARED<font color="black">)</font> <font color="black">&</font><font color="black">&</font> defined<font color="black">(</font>WCHAR_T_IS_UTF32<font color="black">)</font><font color="black">)</font>
@@ -351,7 +353,8 @@ cef_string_wrappers.h
   <font color="black">}</font>
   CefStringBase<font color="black">(</font><font color="blue">const</font> char16<font color="black">*</font> src<font color="black">)</font>  <font color="green">// NOLINT(runtime/explicit)</font>
     <font color="black">:</font> string_<font color="black">(</font>NULL<font color="black">)</font>, owner_<font color="black">(</font><font color="blue">false</font><font color="black">)</font> <font color="black">{</font>
-    FromString16<font color="black">(</font>string16<font color="black">(</font>src<font color="black">)</font><font color="black">)</font>;
+    <font color="blue">if</font> <font color="black">(</font>src<font color="black">)</font>
+      FromString16<font color="black">(</font>string16<font color="black">(</font>src<font color="black">)</font><font color="black">)</font>;
   <font color="black">}</font>
 <font color="blue">#endif</font>  <font color="green">// BUILDING_CEF_SHARED && WCHAR_T_IS_UTF32</font>
 
@@ -363,7 +366,8 @@ cef_string_wrappers.h
   <font color="green">///</font>
   CefStringBase<font color="black">(</font><font color="blue">const</font> char_type<font color="black">*</font> src, size_t src_len, <font color="blue">bool</font> copy<font color="black">)</font>
     <font color="black">:</font> string_<font color="black">(</font>NULL<font color="black">)</font>, owner_<font color="black">(</font><font color="blue">false</font><font color="black">)</font> <font color="black">{</font>
-    FromString<font color="black">(</font>src, src_len, copy<font color="black">)</font>;
+    <font color="blue">if</font> <font color="black">(</font>src <font color="black">&</font><font color="black">&</font> src_len <font color="black">&#62;</font> <font color="maroon">0</font><font color="black">)</font>
+      FromString<font color="black">(</font>src, src_len, copy<font color="black">)</font>;
   <font color="black">}</font>
 
   <font color="green">///</font>
